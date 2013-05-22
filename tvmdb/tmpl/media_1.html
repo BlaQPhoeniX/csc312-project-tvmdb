@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ media.title }}{% endblock %}
+
+{% block content %}
+{% load staticfiles %}
+  <h2>{{ media.title }}</h1>
+  <img src="/static/img/banner/{{media.id}}.jpg" class="img-polaroid">
+  <p>{{ media.description }}</p>
+  <table class="table table-bordered table-striped table-hover">
+  <tbody>
+    <tr>
+      <td>Premiered</td>
+      <td>{{ media.premiere }}</td>
+    </tr>
+    <tr>
+      <td>Rating</td>
+      <td>{{ media.rating }}/10 ({{ media.votes }} votes)</td>
+    </tr>
+    <tr>
+      <td>Genres</td>
+      <td>{% for gen in media.genres.all %}<a href="/media/genre/{{ gen.id }}">{{ gen.name }}</a>{% if not forloop.last %}, {% endif %}{% endfor %}</td>
+    </tr>
+    <tr>
+      <td>Info Link</td>
+      <td><a href="http://imdb.com/title/{{ media.external_id }}" target="_blank">IMDB</a></td>
+    </tr>
+  </tbody>
+  </table>
+{% if user.is_authenticated %}
+  <button id="sub" value="{{ media.id }}" class="btn btn-success pull-right" {% if media in user.userprofile.media.all %}style="display: none;"{% endif %}" type="submit"><i class="icon-ok icon-white"></i>Subscribe</button>
+  <button id="unsub" value="{{ media.id }}" class="btn btn-danger pull-right" {% if media not in user.userprofile.media.all %}style="display: none;"{% endif %}" type="submit"><i class="icon-remove icon-white"></i>Unsubscribe</button>
+{% endif %}
+{% endblock %}

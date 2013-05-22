@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ media.title }}{% endblock %}
+
+{% block content %}
+<div class="row-fluid">
+  <div class="span12">
+    <h2>{{ media.title }}</h2>
+    <div class="row-fluid">
+      <div class="span4">
+        <p>{{ media.description }}</p>
+      </div>
+    </div>
+{% if user.is_authenticated %}
+        <div class="span2">
+          <button class="btn btn-success" type="submit"><i class="icon-ok icon-white"></i>Subscribe</button>
+        </div>
+        
+        <div class="span2">
+          <button class="btn btn-danger" type="submit"><i class="icon-remove icon-white"></i>Unsubscribe</button>
+        </div>{% endif %}
+  </div>
+</div>
+{% endblock %}

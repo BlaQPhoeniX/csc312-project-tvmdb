@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+
+{% block title %}Register{% endblock %}
+
+{% block content %}
+<form class="form-signin" method="post" action="/register/">
+<fieldset>
+{% csrf_token %}
+<!-- Form Name -->
+<h2>TVMdb Registration</h2>
+
+<!-- Text input-->
+<div class="control-group">
+  <label class="control-label" for="textinput">Username</label>
+  <div class="controls">
+    <input id="textinput" name="username" type="text" placeholder="Username" class="input-xlarge">
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="control-group">
+  <label class="control-label" for="textinput">E-Mail</label>
+  <div class="controls">
+    <input id="textinput" name="email" type="text" placeholder="E-Mail address" class="input-xlarge">
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="control-group">
+  <label class="control-label" for="textinput">Birth Date</label>
+  <div class="controls">
+    <input id="textinput" name="birthdate" type="text" placeholder="YYYY-MM-DD" class="input-xlarge">
+  </div>
+</div>
+
+<!-- Multiple Radios -->
+<div class="control-group">
+  <label class="control-label" for="radios">Gender</label>
+  <div class="controls">
+    <label class="radio" for="radios-0">
+      <input type="radio" name="gender" id="radios-0" value="m" checked="checked">
+      Male
+    </label>
+    <label class="radio" for="radios-1">
+      <input type="radio" name="gender" id="radios-1" value="f">
+      Female
+    </label>
+  </div>
+</div>
+
+<!-- Password input-->
+<div class="control-group">
+  <label class="control-label" for="passwordinput">Password</label>
+  <div class="controls">
+    <input id="passwordinput" name="password" type="password" placeholder="Password" class="input-xlarge">
+  </div>
+</div>
+
+<!-- Password input-->
+<div class="control-group">
+  <label class="control-label" for="passwordinput">Confirm Password</label>
+  <div class="controls">
+    <input id="passwordinput" type="password" placeholder="Password" class="input-xlarge">
+  </div>
+</div>
+    <button class="btn btn-small btn-primary" type="submit">Register</button>
+</form>
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}Sign In{% endblock %}
+
+{% block content %}
+<form class="form-signin" action="/login/" method="post">
+    {% csrf_token %}
+    <h2>TVMdb sign in</h2>
+    {% if form.errors %}
+    <span class="input-block-level alert alert-error">Your username and password didn't match. Please try again.</span>
+    {% endif %}
+    {% if state %}
+    <span class="input-block-level alert alert-success">You have successfully registered. Please login below.</span>
+    {% endif %}
+    <input type="text" class="input-block-level" name='username' placeholder="Username">
+    <input type="password" class="input-block-level" name='password' placeholder="Password">
+    <input type="hidden" name="next" value="{{ next }}" />
+    <button class="btn btn-small btn-primary" type="submit">Sign in</button>
+
+</form>
+{% endblock %}
